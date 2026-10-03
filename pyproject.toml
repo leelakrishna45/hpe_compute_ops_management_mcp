@@ -1,0 +1,141 @@
+[build-system]
+requires = [
+    "setuptools>=75.0",
+    "wheel"
+]
+build-backend = "setuptools.build_meta"
+
+
+[project]
+name = "hpe-compute-ops-mcp"
+version = "0.1.0"
+description = "MCP server for managing and monitoring HPE servers through HPE Compute Ops Management REST APIs."
+readme = "README.md"
+requires-python = ">=3.11"
+license = { text = "MIT" }
+
+authors = [
+    { name = "Your Name" }
+]
+
+keywords = [
+    "mcp",
+    "hpe",
+    "hewlett-packard-enterprise",
+    "compute-ops-management",
+    "server-management",
+    "server-monitoring",
+    "rest-api"
+]
+
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "Intended Audience :: System Administrators",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Operating System :: OS Independent"
+]
+
+dependencies = [
+    "mcp>=1.0.0",
+    "httpx>=0.27.0",
+    "pydantic>=2.0.0",
+    "pydantic-settings>=2.0.0",
+    "python-dotenv>=1.0.0"
+]
+
+
+[project.optional-dependencies]
+
+dev = [
+    "pytest>=8.0.0",
+    "pytest-asyncio>=0.23.0",
+    "pytest-httpx>=0.30.0",
+    "ruff>=0.8.0",
+    "mypy>=1.13.0"
+]
+
+
+[project.scripts]
+
+hpe-compute-ops-mcp = "hpe_compute_ops_mcp.server:main"
+
+
+[tool.setuptools]
+
+package-dir = { "" = "src" }
+
+
+[tool.setuptools.packages.find]
+
+where = ["src"]
+
+
+[tool.pytest.ini_options]
+
+testpaths = [
+    "tests"
+]
+
+pythonpath = [
+    "src"
+]
+
+asyncio_mode = "auto"
+
+
+[tool.ruff]
+
+line-length = 88
+target-version = "py311"
+
+exclude = [
+    ".git",
+    ".venv",
+    "venv",
+    "build",
+    "dist",
+    "__pycache__"
+]
+
+
+[tool.ruff.lint]
+
+select = [
+    "E",
+    "F",
+    "I",
+    "B",
+    "UP"
+]
+
+ignore = [
+    "E501"
+]
+
+
+[tool.mypy]
+
+python_version = "3.11"
+strict = true
+ignore_missing_imports = true
+
+
+[tool.coverage.run]
+
+source = [
+    "hpe_compute_ops_mcp"
+]
+
+branch = true
+
+
+[tool.coverage.report]
+
+exclude_lines = [
+    "pragma: no cover",
+    "if TYPE_CHECKING:"
+]
